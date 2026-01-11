@@ -10,27 +10,34 @@ class encrypt():
 
         lowercase="abcdefghijklmnopqrstuvwxyz"
         uppercase="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        lower_first_half="abcdefghijklm"
+        lower_second_half="nopqrstuvwxyz"
+        upper_first_half="ABCDEFGHIJKLM"
+        upper_second_half="NOPQRSTUVWXYZ"
+
+        encrypted=""
+
 
         for txt in content:
             if txt.isalpha and txt.islower:
                 letter=lowercase
                 if letter<="m":
-                    txt=lowercase.letter(txt)
-                    encrypt_letter=letter+self.shift1*self.shift2
+                    txt=lower_first_half.letter(txt)
+                    encrypted=letter+self.shift1*self.shift2
                 else:
-                    txt=lowercase.letter(txt)
-                    encrypt_letter=letter+self.shift1+self.shift2
+                    txt=lower_second_half.letter(txt)
+                    encrypted=letter+self.shift1+self.shift2
 
             elif txt.isalpha and txt.isupper:
                 letter=uppercase
                 if letter<="M":
-                    txt=uppercase.letter(txt)
-                    encrypt_letter=letter-self.shift1
+                    txt=upper_first_half.letter(txt)
+                    encrypted=letter-self.shift1
                 else:
-                    txt=uppercase.letter(txt)
-                    encrypt_letter=letter+self.shift2**2
+                    txt=upper_second_half.letter(txt)
+                    encrypted=letter+self.shift2**2
             else:
-                encrypt_letter=txt
+                encrypted=txt
             
         file=open("encrypted_text.txt", "a")
-        file.write(encrypt_letter)
+        file.write(encrypted)

@@ -1,36 +1,55 @@
 class decrypt():
     def __init__(self, shift1, shift2):
-        self.shift1=shift1
-        self.shift2=shift2
+        self.shift1 = shift1
+        self.shift2 = shift2
 
     def start_decrypt(self):
-        file=open("encrypted_text.txt", "r")
-        content=file.read()
-        file.close()
+        try:
+            file = open("encrypted_text.txt", "r")
+            content = file.read()
+            file.close()
+        except FileNotFoundError:
+            print("File Not Found!")
+            return
 
-        lowercase="abcdefghijklmnopqrstuvwxyz"
-        uppercase="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        lowercase = "abcdefghijklmnopqrstuvwxyz"
+        uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+        lower_first_half="abcdefghijklm"
+        lower_second_half="nopqrstuvwxyz"
+        upper_first_half="ABCDEFGHIJKLM"
+        upper_second_half="NOPQRSTUVWXYZ"
+        
+        forward = self.shift1 * self.shift2
+        backward = self.shift1 + self.shift2
+        decrypted = ""
 
         for txt in content:
-            if txt.isalpha and txt.islower:
-                letter=lowercase
-                if letter<="m":
-                    txt=lowercase.letter(txt)
-                    decrypt_letter=letter-self.shift1*self.shift2
+            if txt.isalpha() and txt.islower():
+                index = lowercase.index(txt)
+                if index <= 12:
+                    index2=lower_first_half.index(txt)
+                    new_index = (index2 - forward) % 13
+                    decrypted+=lower_first_half[new_index]
                 else:
-                    txt=lowercase.letter(txt)
-                    decrypt_letter=letter-self.shift1+self.shift2
+                    index2=lower_second_half.index(txt)
+                    new_index = (index2 + backward) % 13
+                    decrypted += lower_second_half[new_index]
 
-            elif txt.isalpha and txt.isupper:
-                letter=uppercase
-                if letter<="M":
-                    txt=uppercase.letter(txt)
-                    decrypt_letter=letter+self.shift1
+            elif txt.isalpha() and txt.isupper():
+                index = uppercase.index(txt)
+                if index <= 12:
+                    index2=upper_first_half.index(txt)
+                    new_index = (index2 + self.shift1) % 13
+                    decrypted += upper_first_half[new_index]
                 else:
-                    txt=uppercase.letter(txt)
-                    decrypt_letter=letter-self.shift2**2
+                    index2=upper_second_half.index(txt)
+                    new_index = (index2 - self.shift2**2) % 13
+                    decrypted += upper_second_half[new_index]
+
             else:
-                decrypt_letter=txt
-            
-        file=open("decrypted_text.txt", "a")
-        file.write(decrypt_letter)
+                decrypted += txt  
+
+        file=open("decrypted_text.txt", 'w')
+        file.write(decrypted)
+        return decrypted

@@ -22,28 +22,33 @@ class decrypt():
         upper_first_half="ABCDEFGHIJKLM"
         upper_second_half="NOPQRSTUVWXYZ"
 
+        forward = self.shift1 * self.shift2
+        backward = self.shift1 + self.shift2
+        decrypted = ""
+
+
         for txt in content:
             if txt.isalpha() and txt.islower():
-                char = lowercase.char(txt)
-                if char <= 12:
-                    char2=lower_first_half.char(txt)
-                    new_char = char2-self.shift1*self.shift2
-                    decrypted+=lower_first_half[new_char]
+                index = lowercase.index(txt)
+                if index <= 12:
+                    index2=lower_first_half.index(txt)
+                    new_index = index2-forward
+                    decrypted+=lower_first_half[new_index]
                 else:
-                    char2=lower_second_half.char(txt)
-                    new_char = char2 + self.shift1+self.shift2
-                    decrypted += lower_second_half[new_char]
+                    index2=lower_second_half.index(txt)
+                    new_index = index2 + backward
+                    decrypted += lower_second_half[new_index]
 
             elif txt.isalpha() and txt.isupper():
-                char = uppercase.char(txt)
-                if char <= 12:
-                    char2=upper_first_half.char(txt)
-                    new_char = char2 + self.shift1
-                    decrypted += upper_first_half[new_char]
+                index = uppercase.index(txt)
+                if index <= 12:
+                    index2=upper_first_half.index(txt)
+                    new_index = index2 + self.shift1
+                    decrypted += upper_first_half[new_index]
                 else:
-                    char2=upper_second_half.char(txt)
-                    new_char = char2 - self.shift2**2
-                    decrypted += upper_second_half[new_char]
+                    index2=upper_second_half.index(txt)
+                    new_index = index2 - self.shift2**2
+                    decrypted += upper_second_half[new_index]
 
             else:
                 decrypted += txt  

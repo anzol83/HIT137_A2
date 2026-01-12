@@ -44,7 +44,7 @@ class encrypt():
                     encrypted += upper_second_half[new_index]
 
             else:
-                encrypted += txt 
+                encrypted += txt
 
         with open("encrypted_text.txt", "w") as file:
             file.write(encrypted)

@@ -34,6 +34,6 @@ while True:
         else:
             print("Error Decryption!")
             print("Content doesn't match original data.")
-   
+      
     else:
         print("Please enter 1 or 2.")

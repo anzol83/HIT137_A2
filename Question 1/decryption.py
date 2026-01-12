@@ -19,7 +19,7 @@ class decrypt():
         lower_second_half="nopqrstuvwxyz"
         upper_first_half="ABCDEFGHIJKLM"
         upper_second_half="NOPQRSTUVWXYZ"
-        
+
         forward = self.shift1 * self.shift2
         backward = self.shift1 + self.shift2
         decrypted = ""

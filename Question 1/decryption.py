@@ -26,28 +26,27 @@ class decrypt():
         backward = self.shift1 + self.shift2
         decrypted = ""
 
-
         for txt in content:
             if txt.isalpha() and txt.islower():
                 index = lowercase.index(txt)
                 if index <= 12:
                     index2=lower_first_half.index(txt)
-                    new_index = index2-forward
+                    new_index = (index2 - forward) % 13
                     decrypted+=lower_first_half[new_index]
                 else:
                     index2=lower_second_half.index(txt)
-                    new_index = index2 + backward
+                    new_index = (index2 + backward) % 13
                     decrypted += lower_second_half[new_index]
 
             elif txt.isalpha() and txt.isupper():
                 index = uppercase.index(txt)
                 if index <= 12:
                     index2=upper_first_half.index(txt)
-                    new_index = index2 + self.shift1
+                    new_index = (index2 + self.shift1) % 13
                     decrypted += upper_first_half[new_index]
                 else:
                     index2=upper_second_half.index(txt)
-                    new_index = index2 - self.shift2**2
+                    new_index = (index2 - self.shift2**2) % 13
                     decrypted += upper_second_half[new_index]
 
             else:

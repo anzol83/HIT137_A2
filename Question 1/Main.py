@@ -2,20 +2,20 @@ from encryption import encrypt
 from decryption import decrypt
 
 while True:
-    while True:
-        choice = input("Enter 1 to encrypt, 2 to decrypt: ")
-        if choice=="1" or choice=="2":
+    choice = input("Enter 1 to encrypt, 2 to decrypt or 3 to exit: ")
+    if choice=="1" or choice=="2":
+        while True:
+            try:
+                shift_1=int(input("Enter shift 1 Key: "))
+                shift_2=int(input("Enter shift 2 Key: "))
                 break
-        else:
-            print("Please enter valid number: ")
+            except ValueError:
+                print("Please enter Integers")
 
-    while True:
-        try:
-            shift_1=int(input("Enter shift 1 Key: "))
-            shift_2=int(input("Enter shift 2 Key: "))
-            break
-        except ValueError:
-            print("Please enter Integers")
+    elif choice=="3":
+        pass
+    else:
+        print("Please enter valid number: ")
 
     if choice == "1":
         process1 = encrypt(shift_1, shift_2)
@@ -34,6 +34,9 @@ while True:
         else:
             print("Error Decryption!")
             print("Content doesn't match original data.")
+        
+    elif choice=="3":
+        break
       
     else:
-        print("Please enter 1 or 2.")
+        print("Please enter valid number.")

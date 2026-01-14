@@ -1,16 +1,16 @@
 import turtle
 
 def main():
-    # Setup screen and turtle
+    # Ask user for line length
+    side_length = float(input("Enter side length: "))
+
     screen = turtle.Screen()
     t = turtle.Turtle()
 
-    # Draw a simple line
-    t.forward(100)
+    # Draw line using user input
+    t.forward(side_length)
 
-    # Keep window open
     turtle.done()
 
-# Program starts here
 if __name__ == "__main__":
     main()

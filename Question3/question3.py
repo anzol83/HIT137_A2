@@ -43,7 +43,7 @@ def draw_polygon(sides, side_length, depth):
     depth       : recursion depth for the pattern
     """
 
-    # Create a turtle object for drawing
+    # This Creates a turtle object for drawing
     t = turtle.Turtle()
     t.speed(0)  # Setting maximum drawing speed for faster rendering
 

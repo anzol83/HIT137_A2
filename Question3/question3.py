@@ -1,10 +1,14 @@
 import turtle
 
+def inward_koch_edge(t, length, depth):
+    # Base case: draw straight line
+    if depth == 0:
+        t.forward(length)
+
 def draw_polygon(sides, side_length):
-    # Draw polygon using loop
     t = turtle.Turtle()
     for _ in range(sides):
-        t.forward(side_length)
+        inward_koch_edge(t, side_length, 0)
         t.left(360 / sides)
 
 def main():

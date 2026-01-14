@@ -77,3 +77,32 @@ def calculate_temperature_ranges(df):
                     f"{station}: Range {r:.1f}°C "
                     f"(Max: {max_t:.1f}°C, Min: {min_t:.1f}°C)\n"
                 )
+
+def calculate_temperature_stability(df):
+    """Find most stable and most variable stations based on standard deviation."""
+    station_stddevs = []
+
+    month_columns = list(SEASONS["Summer"] + SEASONS["Autumn"] +
+                         SEASONS["Winter"] + SEASONS["Spring"])
+
+    for station, group in df.groupby("STATION_NAME"):
+        values = group[month_columns].values.flatten()
+        values = values[~np.isnan(values)]
+
+        if len(values) == 0:
+            continue
+
+        stddev = np.std(values)
+        station_stddevs.append((station, stddev))
+
+    min_std = min(s[1] for s in station_stddevs)
+    max_std = max(s[1] for s in station_stddevs)
+
+    with open("temperature_stability_stations.txt", "w") as f:
+        for station, std in station_stddevs:
+            if np.isclose(std, min_std):
+                f.write(f"Most Stable: {station}: StdDev {std:.1f}°C\n")
+
+        for station, std in station_stddevs:
+            if np.isclose(std, max_std):
+                f.write(f"Most Variable: {station}: StdDev {std:.1f}°C\n")

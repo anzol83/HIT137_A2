@@ -17,9 +17,9 @@ def inward_koch_edge(t, length, depth):
 
 def draw_polygon(sides, side_length, depth):
     screen = turtle.Screen()
-    t = turtle.Turtle()
+    screen.tracer(0, 0)  # draw instantly
 
-    # Make it faster + cleaner
+    t = turtle.Turtle()
     t.hideturtle()
     t.speed(0)
 
@@ -32,6 +32,7 @@ def draw_polygon(sides, side_length, depth):
         inward_koch_edge(t, side_length, depth)
         t.left(360 / sides)
 
+    screen.update()
     turtle.done()
 
 def main():

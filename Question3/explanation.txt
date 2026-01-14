@@ -1,0 +1,11 @@
+This program uses turtle graphics and recursion to draw a geometric pattern. The idea is that instead of
+drawing a straight line for each side of a shape, the program replaces the line with a smaller repeated pattern.
+The main recursive function is called inward_koch_edge. If the recursion depth is zero, the turtle simply draws 
+a straight line and stops. This is the base case, and it prevents the recursion from running forever.
+If the depth is greater than zero, the function divides the line into three equal parts and draws four
+smaller segments. Between these segments, the turtle turns left and right at specific angles to create an 
+inward triangular shape. The function then calls itself on each smaller segment with a reduced depth.
+Another function, draw_recursive_polygon, uses this recursive edge to build a full polygon. It calculates
+how much the turtle needs to turn after each side so that the shape closes properly. It also uses some basic 
+trigonometry to position the shape near the centre of the screen.
+Overall, the program shows how recursion can be used to generate complex patterns by repeatedly applying simple drawing rules.

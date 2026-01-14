@@ -1,4 +1,4 @@
-import turtle  # Import the turtle graphics module for drawing
+import turtle  # Importing the turtle graphics module for drawing
 
 def inward_koch_edge(t, length, depth):
     """
@@ -15,21 +15,21 @@ def inward_koch_edge(t, length, depth):
         t.forward(length)
         return
 
-    # Divide the current line segment into three equal parts
+    # Dividing the current line segment into three equal parts
     third = length / 3
 
-    # Recursively draw the first third of the segment
+    # Recursively drawing the first third of the segment
     inward_koch_edge(t, third, depth - 1)
 
-    # Turn left to start forming the inward equilateral triangle
+    # Turning left to start forming the inward equilateral triangle
     t.left(60)
     inward_koch_edge(t, third, depth - 1)
 
-    # Turn right to create the inward indentation
+    # Turning right to create the inward indentation
     t.right(120)
     inward_koch_edge(t, third, depth - 1)
 
-    # Turn left again to align with the original direction
+    # Turning left again to align with the original direction
     t.left(60)
     inward_koch_edge(t, third, depth - 1)
 
@@ -45,9 +45,9 @@ def draw_polygon(sides, side_length, depth):
 
     # Create a turtle object for drawing
     t = turtle.Turtle()
-    t.speed(0)  # Set maximum drawing speed for faster rendering
+    t.speed(0)  # Setting maximum drawing speed for faster rendering
 
-    # Draw each side of the polygon
+    # Drawing each side of the polygon
     for _ in range(sides):
         # Draw a recursively modified edge
         inward_koch_edge(t, side_length, depth)

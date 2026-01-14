@@ -1,14 +1,18 @@
 import turtle
 
 def inward_koch_edge(t, length, depth):
-    # Stopping recursion here
     if depth == 0:
         t.forward(length)
         return
 
-    # Splitting line into three parts
     third = length / 3
 
+    inward_koch_edge(t, third, depth - 1)
+    t.left(60)
+    inward_koch_edge(t, third, depth - 1)
+    t.right(120)
+    inward_koch_edge(t, third, depth - 1)
+    t.left(60)
     inward_koch_edge(t, third, depth - 1)
 
 def draw_polygon(sides, side_length, depth):

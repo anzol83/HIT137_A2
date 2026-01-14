@@ -78,39 +78,40 @@ def calculate_temperature_ranges(df):
                     f"(Max: {max_t:.1f}°C, Min: {min_t:.1f}°C)\n"
                 )
 
+#Function for calculating temperature stability using standard deviation
 def calculate_temperature_stability(df):
-    """Find most stable and most variable stations based on standard deviation."""
     station_stddevs = []
 
-    month_columns = list(SEASONS["Summer"] + SEASONS["Autumn"] +
-                         SEASONS["Winter"] + SEASONS["Spring"])
+    month_columns = list(
+        SEASONS["Summer"] + SEASONS["Autumn"] + SEASONS["Winter"] + SEASONS["Spring"]
+    )
 
-    for station, group in df.groupby("STATION_NAME"):
+    for station, group in df.groupby("STATION_NAME"): #Grouping the DataFrame by StationName
         values = group[month_columns].values.flatten()
-        values = values[~np.isnan(values)]
+        values = values[~np.isnan(values)] #Removing missing temperature values
 
         if len(values) == 0:
             continue
 
-        stddev = np.std(values)
-        station_stddevs.append((station, stddev))
+        stddev = np.std(values) #Calculating Standard Deviation of temperatures
+        station_stddevs.append((station, stddev)) #Storing the StationName and Temperature
 
-    min_std = min(s[1] for s in station_stddevs)
-    max_std = max(s[1] for s in station_stddevs)
+    min_std = min(s[1] for s in station_stddevs) #Smallest standard deviation (most stable)
+    max_std = max(s[1] for s in station_stddevs) #Largest standard deviation (most variable)
 
     with open("temperature_stability_stations.txt", "w") as f:
         for station, std in station_stddevs:
-            if np.isclose(std, min_std):
+            if np.isclose(std, min_std): #Finding station with min standard deviation
                 f.write(f"Most Stable: {station}: StdDev {std:.1f}°C\n")
 
         for station, std in station_stddevs:
-            if np.isclose(std, max_std):
+            if np.isclose(std, max_std): #Finding station with max standard deviation
                 f.write(f"Most Variable: {station}: StdDev {std:.1f}°C\n")
 def main():
-    df = load_all_temperature_data()
-    calculate_seasonal_averages(df)
-    calculate_temperature_ranges(df)
-    calculate_temperature_stability(df)
+    df = load_all_temperature_data() #Loading all temperature data into pandas DataFrame
+    calculate_seasonal_averages(df) #Seasonal Average
+    calculate_temperature_ranges(df) #Temperature Range
+    calculate_temperature_stability(df) #Temperature Stability
 
 if __name__ == "__main__":
     main()

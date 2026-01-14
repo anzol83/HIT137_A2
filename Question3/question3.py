@@ -42,12 +42,12 @@ def draw_recursive_polygon(sides: int, side_length: float, depth: int) -> None:
     # Creating the drawing window
     screen = turtle.Screen()
     screen.title("HIT137 - Q3 Recursive Turtle Pattern")
-    screen.tracer(0, 0)  # Turning off animation to avoid slow drawing
 
     # Creating turtle and set basic settings
     t = turtle.Turtle()
     t.hideturtle()     # Hide arrow, we only want the drawing
     t.speed(0)         # Fastest speed
+    screen.tracer(0, 0)  # Turning off animation to avoid slow drawing
 
     # This calculation helps place the polygon near the center
     # It finds the radius of a regular polygon
@@ -72,7 +72,7 @@ def draw_recursive_polygon(sides: int, side_length: float, depth: int) -> None:
     turtle.done()
 
 
-def main() -> None:
+def main():
     # Asking user for input values
     sides = int(input("Enter the number of sides: "))
     side_length = float(input("Enter the side length: "))
@@ -88,7 +88,7 @@ def main() -> None:
     if depth < 0:
         raise ValueError("Recursion depth must be 0 or more.")
 
-    # Start drawing
+    # Start drawing here
     draw_recursive_polygon(sides, side_length, depth)
 
 

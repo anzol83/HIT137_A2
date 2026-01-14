@@ -49,10 +49,10 @@ def draw_polygon(sides, side_length, depth):
 
     # Drawing each side of the polygon
     for _ in range(sides):
-        # Draw a recursively modified edge
+        # Drawing a recursively modified edge
         inward_koch_edge(t, side_length, depth)
 
-        # Rotate the turtle to draw the next side of the polygon
+        # This Rotate the turtle to draw the next side of the polygon
         t.left(360 / sides)
 
 def main():
@@ -60,7 +60,7 @@ def main():
     Main function that takes user input and starts the drawing process.
     """
 
-    # Get user inputs
+    # Getting user inputs
     sides = int(input("Enter number of sides: "))
     side_length = float(input("Enter side length: "))
     depth = int(input("Enter recursion depth: "))

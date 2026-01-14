@@ -37,9 +37,16 @@ def draw_recursive_polygon(sides, side_length, depth):
     turtle.done()
 
 def main():
-    sides = int(input("Enter number of sides: "))
-    side_length = float(input("Enter side length: "))
-    depth = int(input("Enter recursion depth: "))
+    sides = int(input("Enter the number of sides: "))
+    side_length = float(input("Enter the side length: "))
+    depth = int(input("Enter the recursion depth: "))
+
+    if sides < 3:
+        raise ValueError("Number of sides must be at least 3.")
+    if side_length <= 0:
+        raise ValueError("Side length must be positive.")
+    if depth < 0:
+        raise ValueError("Recursion depth must be 0 or more.")
 
     draw_recursive_polygon(sides, side_length, depth)
 

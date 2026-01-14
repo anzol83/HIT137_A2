@@ -2,15 +2,11 @@ import turtle
 import math
 
 def inward_koch_edge(t, length, depth):
-    # Base case: just draw the line
     if depth == 0:
         t.forward(length)
         return
 
-    # Break the line into 3 parts
     third = length / 3
-
-    # Recursion + inward triangle indentation
     inward_koch_edge(t, third, depth - 1)
     t.left(60)
     inward_koch_edge(t, third, depth - 1)
@@ -23,7 +19,10 @@ def draw_polygon(sides, side_length, depth):
     screen = turtle.Screen()
     t = turtle.Turtle()
 
-    # Rough centering using polygon radius idea
+    # Make it faster + cleaner
+    t.hideturtle()
+    t.speed(0)
+
     radius = side_length / (2 * math.sin(math.pi / sides))
     t.penup()
     t.goto(-side_length / 2, -radius / 2)

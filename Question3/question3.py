@@ -1,12 +1,12 @@
 import turtle
 
 def inward_koch_edge(t, length, depth):
-    # Stop recursion
+    # Stopping recursion here
     if depth == 0:
         t.forward(length)
         return
 
-    # Split line into three parts
+    # Splitting line into three parts
     third = length / 3
 
     inward_koch_edge(t, third, depth - 1)

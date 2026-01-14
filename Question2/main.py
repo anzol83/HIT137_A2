@@ -106,3 +106,11 @@ def calculate_temperature_stability(df):
         for station, std in station_stddevs:
             if np.isclose(std, max_std):
                 f.write(f"Most Variable: {station}: StdDev {std:.1f}°C\n")
+def main():
+    df = load_all_temperature_data()
+    calculate_seasonal_averages(df)
+    calculate_temperature_ranges(df)
+    calculate_temperature_stability(df)
+
+if __name__ == "__main__":
+    main()

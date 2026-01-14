@@ -17,7 +17,6 @@ SEASONS = {
 
 # Now loading all the csv file of temperature folder
 # Each file with .csv is stored in df
-
 def load_all_temperature_data():
     """Load and combine all CSV files in the temperatures folder."""
     all_data = []
@@ -29,3 +28,19 @@ def load_all_temperature_data():
             all_data.append(df)  #adds the data file to all_data list
 
     return pd.concat(all_data, ignore_index=True)
+
+#Calculating seasonal average temperature
+def calculate_seasonal_averages(df):
+
+    #Creating dictionary to store average temperatures for each season
+    season_averages = {}
+
+    for season, months in SEASONS.items(): #loopinf through seasons and months
+        values = df[months].values.flatten() #select the month column and convert the Numpyarray to 1-d array
+        values = values[~np.isnan(values)] #Removes any missing values
+        season_averages[season] = values.mean() #Calculate the average
+
+    #Create a text file in write mode for the data
+    with open("average_temp.txt", "w") as f:
+        for season, avg in season_averages.items():
+            f.write(f"{season}: {avg:.1f}°C\n") #Write season name and average temperature to 1 decimal place

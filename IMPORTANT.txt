@@ -1,0 +1,3 @@
+Each folder has their own python files and to run them, you need to first enter the folder.
+For Example:
+If you wish to run the python file of Question 2, you first need to enter the folder "Question2" to be able to run the file.

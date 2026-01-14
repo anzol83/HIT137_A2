@@ -1,0 +1,2 @@
+To Run the "main.py" file of Question 2, you need to first enter the "Question2" folder.
+If you stay outside the folder, it might show an Error like "No Module Found".

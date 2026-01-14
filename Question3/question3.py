@@ -1,12 +1,12 @@
 import turtle
 import math
 
-def inward_koch_edge(t, length, depth):
+def inward_koch_edge(t: turtle.Turtle, length: float, depth: int) -> None:
     if depth == 0:
         t.forward(length)
         return
 
-    third = length / 3
+    third = length / 3.0
     inward_koch_edge(t, third, depth - 1)
     t.left(60)
     inward_koch_edge(t, third, depth - 1)
@@ -15,7 +15,7 @@ def inward_koch_edge(t, length, depth):
     t.left(60)
     inward_koch_edge(t, third, depth - 1)
 
-def draw_recursive_polygon(sides, side_length, depth):
+def draw_recursive_polygon(sides: int, side_length: float, depth: int) -> None:
     screen = turtle.Screen()
     screen.title("HIT137 - Q3 Recursive Turtle Pattern")
     screen.tracer(0, 0)
@@ -24,19 +24,19 @@ def draw_recursive_polygon(sides, side_length, depth):
     t.hideturtle()
     t.speed(0)
 
-    radius = side_length / (2 * math.sin(math.pi / sides))
+    radius = side_length / (2.0 * math.sin(math.pi / sides))
     t.penup()
-    t.goto(-side_length / 2, -radius / 2)
+    t.goto(-side_length / 2.0, -radius / 2.0)
     t.pendown()
 
     for _ in range(sides):
         inward_koch_edge(t, side_length, depth)
-        t.left(360 / sides)
+        t.left(360.0 / sides)
 
     screen.update()
     turtle.done()
 
-def main():
+def main() -> None:
     sides = int(input("Enter the number of sides: "))
     side_length = float(input("Enter the side length: "))
     depth = int(input("Enter the recursion depth: "))

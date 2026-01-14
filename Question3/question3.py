@@ -17,6 +17,7 @@ def inward_koch_edge(t, length, depth):
 
 def draw_recursive_polygon(sides, side_length, depth):
     screen = turtle.Screen()
+    screen.title("HIT137 - Q3 Recursive Turtle Pattern")
     screen.tracer(0, 0)
 
     t = turtle.Turtle()

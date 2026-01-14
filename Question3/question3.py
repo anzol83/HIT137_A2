@@ -65,15 +65,15 @@ def main():
     side_length = float(input("Enter side length: "))
     depth = int(input("Enter recursion depth: "))
 
-    # Set up the turtle graphics window
+    # Setting up the turtle graphics window
     turtle.Screen()
 
-    # Draw the recursive polygon
+    # Drawing the recursive polygon
     draw_polygon(sides, side_length, depth)
 
-    # Keep the window open until the user closes it
+    # This Keeps the window open until the user closes it
     turtle.done()
 
-# Run the program only if this file is executed directly
+# Running the program only if this file is executed directly
 if __name__ == "__main__":
     main()

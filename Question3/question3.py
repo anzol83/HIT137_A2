@@ -15,9 +15,9 @@ def inward_koch_edge(t, length, depth):
     t.left(60)
     inward_koch_edge(t, third, depth - 1)
 
-def draw_polygon(sides, side_length, depth):
+def draw_recursive_polygon(sides, side_length, depth):
     screen = turtle.Screen()
-    screen.tracer(0, 0)  # draw instantly
+    screen.tracer(0, 0)
 
     t = turtle.Turtle()
     t.hideturtle()
@@ -40,7 +40,7 @@ def main():
     side_length = float(input("Enter side length: "))
     depth = int(input("Enter recursion depth: "))
 
-    draw_polygon(sides, side_length, depth)
+    draw_recursive_polygon(sides, side_length, depth)
 
 if __name__ == "__main__":
     main()
